@@ -12,6 +12,6 @@ app.use(express.json());
 // making sure db is open before app is launched
 db.once('open', () => {
   app.listen(PORT, () => {
-    console.log(`Now listening at ${PORT}! 🚀`);
+    console.log(`Now listening at port ${PORT}! 🚀`);
   });
 });
