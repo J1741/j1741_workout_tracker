@@ -9,8 +9,9 @@ app.use(express.urlencoded({ extended: true }) );
 app.use(express.json());
 // app.use(routes);
 
+// making sure db is open before app is launched
 db.once('open', () => {
   app.listen(PORT, () => {
-    console.log(`DB connected and app listening at https://localhost:${PORT}! 🚀`)
+    console.log(`Now listening at ${PORT}! 🚀`);
   });
 });
