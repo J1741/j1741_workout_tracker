@@ -51,10 +51,20 @@ router.put('/workouts/:id', (req, res) => {
 });
 
 // ** adding get route for workouts range **
+// need last seven days 
 router.get('/workouts/range', (req, res) => {
   console.log("** GET /api/workouts/range hit **");
   Workout.find()
-})
+    .sort( { day: -1 } )
+    .limit(7)
+    .then(pastSevenWorkouts => {
+      console.log(pastSevenWorkouts)
+      res.json(pastSevenWorkouts);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 
 module.exports = router;
