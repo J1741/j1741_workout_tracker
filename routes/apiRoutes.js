@@ -2,17 +2,23 @@ const router = require('express').Router();
 const Workout = require('../models/Workout');
 
 // get route for all workouts
-// ** need to augment **
+// ** augmented with totalDuration **
 router.get('/workouts', (req, res) => {
-  console.log("** GET /api/workouts hit **");
-  Workout.find()
-    .then(allWorkouts => {
+  console.log("** augmented GET /api/workouts hit **");
+  Workout.aggregate([
+    {
+      $addFields: {
+        totalDuration: { $sum: '$exercises.duration' }
+      }
+    }
+    ]).then(allWorkouts => {
       res.json(allWorkouts);
     })
     .catch(err => {
       res.json(err);
     });
-});
+  });
+
 
 // post route for adding new workout
 // ** didn't work til added put route **
@@ -43,6 +49,12 @@ router.put('/workouts/:id', (req, res) => {
       console.log(err);
     });
 });
+
+// ** adding get route for workouts range **
+router.get('/workouts/range', (req, res) => {
+  console.log("** GET /api/workouts/range hit **");
+  Workout.find()
+})
 
 
 module.exports = router;
