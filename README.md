@@ -1,4 +1,4 @@
-# j1741_workout_tracker
+# J1741 Workout Tracker
 
 ## Description
 
@@ -8,8 +8,7 @@ Technologies used by the application include `Express.js`, `MongoDB`, and `mongo
 
 The database for the deployed application is hosted on MongoDB Atlas, and the application itself was deployed on Heroku.
 
-The deployed application can be accessed here:
-// TO-BE-ADDED
+The deployed application can be accessed [here](https://glacial-beach-54449.herokuapp.com)
 
 ## Table of Contents
 
@@ -72,9 +71,9 @@ The project repo can be forked here: https://github.com/J1741/j1741_workout_trac
 
 ### Link
 
-A production build of the portfolio was generated deployed to GitHub pages here: // TO-BE-ADDED
+The application is deployed at the following Heroku URL: https://glacial-beach-54449.herokuapp.com
 
-### Screenshot
+### Demo
 
 The following GIF shows the deployed application:
 
