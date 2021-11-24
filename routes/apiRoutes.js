@@ -50,21 +50,24 @@ router.put('/workouts/:id', (req, res) => {
     });
 });
 
-// ** adding get route for workouts range **
-// need last seven days 
+// get route for last seven workouts
+// ** augmented with total duration **
 router.get('/workouts/range', (req, res) => {
-  console.log("** GET /api/workouts/range hit **");
-  Workout.find()
-    .sort( { day: -1 } )
-    .limit(7)
-    .then(pastSevenWorkouts => {
-      console.log(pastSevenWorkouts)
-      res.json(pastSevenWorkouts);
+  console.log("** augmented GET /api/workouts/range hit **");
+  Workout.aggregate([
+    {
+      $addFields: {
+        totalDuration: { $sum: '$exercises.duration' }
+      }
+    }
+    ]).sort( { day: -1 } ).limit(7)
+    .then(allWorkouts => {
+      res.json(allWorkouts);
     })
-    .catch((err) => {
-      console.log(err);
+    .catch(err => {
+      res.json(err);
     });
-});
+  });
 
 
 module.exports = router;
